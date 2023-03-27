@@ -1,0 +1,15 @@
+Value port (Eth \S+)
+Value desc (\S+)
+Value stats (down|up)
+Value speed (\S+)
+Value duplex (full)
+Value mode (\S+|\s+)
+Value vlan (\S+|\s+)
+Value tagged_vlan (\S+|\s+)
+
+Start
+  ^Eth 1/1/\w+\s -> Continue
+  ^${port}\s+${stats}\s+${speed}\s+${duplex}\s+${mode}\s+${vlan}\s+${tagged_vlan} -> Record
+  ^${port}\s+${desc}\s+${stats}\s+${speed}\s+${duplex}\s+${mode}\s+${vlan}\s+${tagged_vlan} -> Record
+  ^${port}\s+${desc}\s+${stats}\s+${speed}\s+${duplex}\s+${mode}\s+ -> Record
+  ^${port}\s+${desc}\s+${stats}\s+${speed}\s+${duplex}\s+${mode}\s+${vlan}\s+${tagged_vlan} -> Record
